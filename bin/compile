@@ -42,6 +42,8 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   fi
 
   # copy files to cache
+  echo "   File types: $(find ${SRC} -printf '%y\n' | sort | uniq -c)"
+  echo "   Total size: $(find ${SRC} -type f -printf '%s\n' | awk '{s += $1} END {print s}')"
   cp -r ${SRC} ${DEST}
 
   echo " ✓"
